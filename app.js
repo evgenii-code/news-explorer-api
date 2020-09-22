@@ -15,8 +15,10 @@ const {
 } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const NotFoundError = require('./errors/not-found-err');
+const { errorMessages } = require('./utils/error-messages');
 const errorHandler = require('./middlewares/error');
 const { loginSchema, createUserSchema, authSchema } = require('./utils/validation-schemes');
+const { limiterConfig } = require('./utils/limiter-config');
 
 require('dotenv').config();
 
@@ -25,10 +27,7 @@ const {
   PORT = 3000,
   DB_DOMAIN = 'mongodb://localhost:27017/news-explorer-db',
 } = process.env;
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
+const limiter = rateLimit(limiterConfig);
 
 mongoose.connect(DB_DOMAIN, {
   useNewUrlParser: true,
@@ -51,7 +50,7 @@ app.use('/users', users);
 app.use('/articles', articles);
 
 app.use((req, res, next) => {
-  next(new NotFoundError('Запрашиваемый ресурс не найден'));
+  next(new NotFoundError(errorMessages.notFound));
 });
 
 app.use(errorLogger);

@@ -1,6 +1,7 @@
 const Article = require('../models/article');
 const { defineError } = require('../utils/define-error');
 const ForbiddenError = require('../errors/forbidden-err');
+const { errorMessages } = require('../utils/error-messages');
 
 module.exports.getArticles = (req, res, next) => {
   const { _id } = req.user;
@@ -34,7 +35,9 @@ module.exports.deleteArticle = (req, res, next) => {
     .orFail()
     .populate(['owner'])
     .then((article) => {
-      if (article.owner._id.toString() !== req.user._id) return next(new ForbiddenError('Недостаточно прав'));
+      if (article.owner._id.toString() !== req.user._id) {
+        return next(new ForbiddenError(errorMessages.forbidden));
+      }
 
       return article.deleteOne()
         .then((data) => {
