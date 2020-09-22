@@ -47,7 +47,7 @@ const articleSchema = new mongoose.Schema({
   },
 });
 
-articleSchema.methods.toJSON = () => {
+articleSchema.methods.toJSON = function () {
   const obj = this.toObject();
   delete obj.owner;
   return obj;
