@@ -8,4 +8,5 @@ module.exports.errorMessages = {
   conflict: 'Пользователь с таким email уже существует',
   validation: 'Ошибка валидации',
   wrongId: 'Передан неверный id',
+  notAllowedByCORS: 'Не разрешено политикой CORS',
 };

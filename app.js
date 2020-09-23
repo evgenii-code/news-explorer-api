@@ -4,6 +4,8 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
+const { corsOptions } = require('./utils/cors-config');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes/index');
 const errorHandler = require('./middlewares/error');
@@ -27,6 +29,7 @@ mongoose.connect(DB_DOMAIN, {
 
 app.use(limiter);
 app.use(helmet());
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(requestLogger);
