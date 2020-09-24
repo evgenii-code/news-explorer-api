@@ -1,6 +1,6 @@
 # **Дипломная работа. Бэкэнд**
 
-## **Версия** 0.0.3
+## **Версия** 0.0.4
 
 ## **Описание API**
 Бэкэнд для дипломной работы. Позволяет зарегистрироваться на ресурсе, и добавлять новости в список избранного.
@@ -36,7 +36,8 @@
 - [celebrate](https://www.npmjs.com/package/celebrate)
 - [winston](https://www.npmjs.com/package/winston)
 - [express-winston](https://www.npmjs.com/package/express-winston)
-- [ESLint](https://eslint.org/)
+- [cors](https://www.npmjs.com/package/cors)
+- [ESLint](https://eslint.org)
 
 ## **Установка**
 - Скачать репозиторий и установить зависимости - `$ npm install`
