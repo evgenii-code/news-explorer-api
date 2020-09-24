@@ -2,8 +2,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { defineError } = require('../utils/define-error');
-const ValidationError = require('../errors/validation-err');
-const { errorMessages } = require('../utils/error-messages');
 
 require('dotenv').config();
 
@@ -15,8 +13,6 @@ module.exports.createUser = (req, res, next) => {
     email,
     password,
   } = req.body;
-
-  if (!password) return next(new ValidationError(errorMessages.passwordNotPassed));
 
   return bcrypt.hash(password, 10)
     .then((hash) => User.create({
