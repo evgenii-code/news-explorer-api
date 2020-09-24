@@ -7,7 +7,6 @@ module.exports.getArticles = (req, res, next) => {
   const { _id } = req.user;
 
   Article.find({ owner: _id })
-    // .orFail()
     .populate(['owner'])
     .then((article) => res.send({ data: article }))
     .catch((err) => defineError(err, next));

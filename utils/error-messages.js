@@ -1,5 +1,6 @@
 module.exports.errorMessages = {
   notFound: 'Запрашиваемый ресурс не найден',
+  articleNotFound: 'Запрашиваемая статья не найдена',
   forbidden: 'Недостаточно прав',
   authNeeded: 'Необходима авторизация',
   wrongCredential: 'Неправильные почта или пароль',
